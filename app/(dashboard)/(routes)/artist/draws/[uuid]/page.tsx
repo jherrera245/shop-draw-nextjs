@@ -18,23 +18,28 @@ const CourseUuidPage = async ({
         return redirect("/");
     }
 
-    const course = await db.tbl_cursos.findFirst({
+    const draw = await db.tbl_dibujos.findFirst({
         where: {
             uuid: params.uuid,
             id_usuario: userId
         }
     });
 
-    if (!course) {
+    if (!draw) {
         return redirect("/");
     }
 
     const requiredFields = [
-        course.titulo,
-        course.descripcion,
-        course.imagen_url,
-        course.precio,
-        course.id_categoria];
+        draw.titulo,
+        draw.descripcion,
+        draw.imagen_url,
+        draw.precio,
+        draw.stock,
+        draw.disponible,
+        draw.es_orginal,
+        draw.id_categoria,
+        draw.id_tecnica,
+    ];
 
     const totalFields = requiredFields.length;
     const completedFields = requiredFields.filter(Boolean).length;
@@ -46,7 +51,7 @@ const CourseUuidPage = async ({
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-y-2">
                     <h1 className="text-2xl font-medium">
-                        Configuracion del curso
+                        Configuración de la publicación del dibujo 
                     </h1>
                     <span className="text-sm text-slate-700 dark:text-white">
                         Completar todos los campos {completionText}
@@ -60,20 +65,20 @@ const CourseUuidPage = async ({
                             <LayoutDashboard className="h-8 w-8 text-teal-700 dark:text-yellow-500" />
                         </div>
                         <h2 className="text-xl">
-                            Personaliza tu curso
+                            Personaliza tu pulicación
                         </h2>
                     </div>
                     <TitleForm
-                        initialData={course}
-                        id_curso={course.id_curso}
+                        initialData={draw}
+                        id_dibujo={draw.id_dibujo}
                     />
                     <DescriptionForm
-                        initialData={course}
-                        id_curso={course.id_curso}
+                        initialData={draw}
+                        id_dibujo={draw.id_dibujo}
                     />
                     <ImageForm
-                        initialData={course}
-                        id_curso={course.id_curso}
+                        initialData={draw}
+                        id_dibujo={draw.id_dibujo}
                     />
                 </div>
             </div>

@@ -11,18 +11,23 @@ datasource db {
   relationMode = "foreignKeys"
 }
 
-model tbl_cursos {
-  id_curso Int @id @default(autoincrement())
+model tbl_dibujos {
+  id_dibujo Int @id @default(autoincrement())
   uuid String @default(uuid())
   id_usuario String
   titulo String @db.Text
   descripcion String? @db.Text
   imagen_url String? @db.Text
   precio Float?
-  publicado Boolean @default(false)
+  stock Int @default(1)
+  disponible Boolean @default(false)
+  es_orginal Boolean @default(false)
 
   id_categoria Int?
   categoria tbl_categorias? @relation(fields: [id_categoria], references: [id_categoria])
+
+  id_tecnica Int?
+  tecnica tbl_tecnicas? @relation(fields: [id_tecnica], references: [id_tecnica])
 
   adjuntos tbl_adjuntos[]
 
@@ -36,7 +41,14 @@ model tbl_categorias {
   id_categoria Int @id @default(autoincrement())
   uuid String @default(uuid())
   nombre String @unique
-  courses tbl_cursos[]
+  dibujos tbl_dibujos[]
+}
+
+model tbl_tecnicas {
+  id_tecnica Int @id @default(autoincrement())
+  uuid String @default(uuid())
+  nombre String @unique
+  dibujos tbl_dibujos[]
 }
 
 model tbl_adjuntos {
@@ -45,11 +57,11 @@ model tbl_adjuntos {
   nombre String
   url String @db.Text
 
-  id_curso Int
-  curso tbl_cursos @relation(fields: [id_curso], references: [id_curso], onDelete: Cascade)
+  id_dibujo Int
+  dibujo tbl_dibujos @relation(fields: [id_dibujo], references: [id_dibujo], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([id_curso])
+  @@index([id_dibujo])
 }

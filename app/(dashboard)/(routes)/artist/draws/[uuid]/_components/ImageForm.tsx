@@ -7,13 +7,13 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { tbl_cursos } from "@prisma/client";
+import { tbl_dibujos } from "@prisma/client";
 import Image from "next/image";
 import { FileUpload } from "@/components/FileUpload";
 
 interface ImageFormProps {
-    initialData: tbl_cursos
-    id_curso: number;
+    initialData: tbl_dibujos
+    id_dibujo: number;
 };
 
 const formSchema = z.object({
@@ -24,7 +24,7 @@ const formSchema = z.object({
 
 export const ImageForm = ({
     initialData,
-    id_curso
+    id_dibujo
 }: ImageFormProps) => {
     const [isEditing, setIsEditing] = useState(false);
 
@@ -34,8 +34,8 @@ export const ImageForm = ({
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            await axios.patch(`/api/courses/${id_curso}`, values);
-            toast.success("Curso Actualizado");
+            await axios.patch(`/api/draws/${id_dibujo}`, values);
+            toast.success("Se agrego imagen para el dibujo");
             toggleEdit();
             router.refresh();
         } catch {

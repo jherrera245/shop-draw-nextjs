@@ -19,11 +19,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
-import { tbl_cursos } from "@prisma/client";
+import { tbl_dibujos } from "@prisma/client";
 
 interface DescriptionFormProps {
-    initialData: tbl_cursos
-    id_curso: number;
+    initialData: tbl_dibujos
+    id_dibujo: number;
 };
 
 const formSchema = z.object({
@@ -34,7 +34,7 @@ const formSchema = z.object({
 
 export const DescriptionForm = ({
     initialData,
-    id_curso
+    id_dibujo
 }: DescriptionFormProps) => {
     const [isEditing, setIsEditing] = useState(false);
 
@@ -58,8 +58,8 @@ export const DescriptionForm = ({
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            await axios.patch(`/api/courses/${id_curso}`, values);
-            toast.success("Curso Actualizado");
+            await axios.patch(`/api/draws/${id_dibujo}`, values);
+            toast.success("Los datos de tu dibujo fueron actualizados");
             toggleEdit();
             router.refresh();
         } catch {
@@ -70,7 +70,7 @@ export const DescriptionForm = ({
     return (
         <div className="mt-6 border bg-[#cfcfcf] dark:bg-[#1f1f1f] rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
-                Descripción del curso
+                Descripción del dibujo o pintura
                 <Button onClick={toggleEdit} variant="customghost">
                     {isEditing ? (
                         <>Cancelar</>
@@ -106,7 +106,7 @@ export const DescriptionForm = ({
                                     <FormControl>
                                         <Textarea
                                             disabled={isSubmitting}
-                                            placeholder="ej. Este curso es sobre..."
+                                            placeholder="Ej. Este dibujo es sobre..."
                                             {...field}
                                         />
                                     </FormControl>

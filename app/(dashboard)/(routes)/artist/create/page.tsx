@@ -32,9 +32,9 @@ const CreatePage = () => {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await axios.post("/api/courses", values);
-            router.push(`/teacher/courses/${response.data.uuid}`);
-            toast.success("Curso creado");
+            const response = await axios.post("/api/draws", values);
+            router.push(`/artist/draws/${response.data.uuid}`);
+            toast.success("Dibujo publicado");
         } catch (error) {
             //console.log("ha ocurrido un error");
             toast.error("Ha ocurrido un error");
@@ -45,9 +45,9 @@ const CreatePage = () => {
     return (
         <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
             <div className="bg-[#cfcfcf] dark:bg-[#1f1f1f] p-6">
-                <h1 className="text-2xl">Nombra tu curso</h1>
+                <h1 className="text-2xl">Nombra tu dibujo</h1>
                 <p className="text-sm text-slate-600 dark:text-gray-500">
-                    ¿Como te gustaría nombrar tu curso? No te preocupes, puedes cambiar esto después.
+                    ¿Como te gustaría nombrar tu dibujo? No te preocupes, puedes cambiar esto después.
                 </p>
                 <Form {...form}>
                     <form
@@ -60,7 +60,7 @@ const CreatePage = () => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
-                                        Titulo del curso
+                                        Titulo del dibujo o pintura
                                     </FormLabel>
                                     <FormControl>
                                         <Input
@@ -69,9 +69,6 @@ const CreatePage = () => {
                                             {...field}
                                         />
                                     </FormControl>
-                                    <FormDescription>
-                                        ¿Que vas a enseñar en este curso?
-                                    </FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}

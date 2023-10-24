@@ -14,7 +14,7 @@ export async function POST(
             return new NextResponse("No autorizado", { status: 401 });
         }
 
-        const course = await db.tbl_cursos.create({
+        const course = await db.tbl_dibujos.create({
             data: {
                 id_usuario: userId,
                 titulo,

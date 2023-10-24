@@ -4,20 +4,20 @@ import { db } from "@/lib/db";
 
 export async function PATCH(
     req: Request,
-    { params }: { params: { id_curso: string } }
+    { params }: { params: { id_draw: string } }
 ) {
     try {
         const { userId } = auth();
-        const { id_curso } = params;
+        const { id_draw } = params;
         const values = await req.json();
 
         if (!userId) {
             return new NextResponse("No autorizado", { status: 401 });
         }
 
-        const course = await db.tbl_cursos.update({
+        const course = await db.tbl_dibujos.update({
             where: {
-                id_curso: parseInt(id_curso),
+                id_dibujo: parseInt(id_draw),
                 id_usuario: userId
             },
             data: {
