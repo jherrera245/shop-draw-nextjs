@@ -46,7 +46,7 @@ export const ImageForm = ({
     return (
         <div className="mt-6 border bg-[#cde0f9] dark:bg-[#334155] rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
-                Imagen del curso
+                Imagen del la pintura
                 <Button
                     className="text-white bg-[#3b82f6] hover:bg-blue-950 dark:hover:bg-slate-600 dark:hover:text-white" 
                     onClick={toggleEdit} 

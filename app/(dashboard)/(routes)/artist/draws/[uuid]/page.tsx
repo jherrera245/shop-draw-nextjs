@@ -65,7 +65,7 @@ const CourseUuidPage = async ({
                         <LayoutDashboard className="h-8 w-8 text-blue-400 dark:text-blue-700" />
                     </div>
                     <h2 className="text-xl">
-                        Personaliza tu pulicación
+                        Personaliza tu publicación
                     </h2>
                 </div>
             </div>
