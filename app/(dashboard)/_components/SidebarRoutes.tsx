@@ -1,5 +1,5 @@
 "use client";
-import { Layout, BarChart, List, Palette } from "lucide-react";
+import { Layout, BarChart, Palette, PenTool } from "lucide-react";
 import { SidebarItem } from "./SidebarItem";
 import {usePathname} from "next/navigation";
 
@@ -18,7 +18,7 @@ const guestRoutes = [
 
 const artistRoutes = [
     {
-        icon: List,
+        icon: PenTool,
         label: "Draws",
         href: "/artist/draws",
     },

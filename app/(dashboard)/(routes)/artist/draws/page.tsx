@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import { cn } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
-import { Compass, Eye, ImageIcon } from "lucide-react";
-import Image from "next/image";
+import { Compass } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { PublicationItem } from "./_components/PublicationItem";
