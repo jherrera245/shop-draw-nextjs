@@ -14,34 +14,38 @@ import {
     FormControl,
     FormField,
     FormItem,
+    FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
+import { tbl_dibujos } from "@prisma/client";
 
-interface TitleFormProps {
-    initialData: {
-        titulo: string;
-    };
+interface AvailableFormProps {
+    initialData: tbl_dibujos;
     id_dibujo: number;
 };
 
 const formSchema = z.object({
-    titulo: z.string().min(5, {
-        message: "El titulo es requerido",
-    }),
+    disponible: z.boolean().optional(),
 });
 
-export const TitleForm = ({
+export const AvailableForm = ({
     initialData,
     id_dibujo
-}: TitleFormProps) => {
+}: AvailableFormProps) => {
     const [isEditing, setIsEditing] = useState(false);
+    const [isChecked, setIsChecked] = useState(initialData.disponible);
+
+    const handleClick = () => {
+        setIsChecked(!isChecked)
+        form.setValue("disponible", isChecked);
+    }
 
     const toggleEdit = () => {
         setIsEditing((current) => !current);
         if (!isEditing) {
-            form.setValue("titulo", initialData.titulo);
+            form.setValue("disponible", initialData.disponible);
         }
     };
 
@@ -49,7 +53,9 @@ export const TitleForm = ({
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: initialData,
+        defaultValues: {
+            disponible: initialData.disponible
+        },
     });
 
     const { isSubmitting, isValid } = form.formState;
@@ -57,6 +63,7 @@ export const TitleForm = ({
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             await axios.patch(`/api/draws/${id_dibujo}`, values);
+            console.log(values)
             toast.success("Dibujo actualizado correctamente");
             toggleEdit();
             router.refresh();
@@ -68,7 +75,7 @@ export const TitleForm = ({
     return (
         <div className="mt-6 border bg-[#cde0f9] dark:bg-[#334155] rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
-                Titulo del dibujo o pintura
+                Estado del dibujo o pintura
                 <Button
                     className="text-white bg-[#3b82f6] hover:bg-blue-950 dark:hover:bg-slate-600 dark:hover:text-white" 
                     onClick={toggleEdit} 
@@ -78,14 +85,14 @@ export const TitleForm = ({
                     ) : (
                         <>
                             <Pencil className="h-4 w-4 mr-2" />
-                            Editar titulo
+                            Editar estado
                         </>
                     )}
                 </Button>
             </div>
             {!isEditing && (
                 <p className="text-xl mt-2">
-                    {initialData.titulo}
+                    {initialData.disponible ? 'Disponible' : 'No disponible'}
                 </p>
             )}
             {isEditing && (
@@ -96,20 +103,24 @@ export const TitleForm = ({
                     >
                         <FormField
                             control={form.control}
-                            name="titulo"
-                            render={({ field }) => (
+                            name="disponible"
+                            render={() => (
                                 <FormItem>
                                     <FormControl>
-                                        <Input
+                                        <Checkbox
                                             disabled={isSubmitting}
-                                            placeholder="ej. 'Desarrollo web con NextJS'"
-                                            {...field}
+                                            checked={initialData.disponible}
+                                            onClick={() => handleClick()}
                                         />
                                     </FormControl>
+                                    <FormLabel>
+                                        &nbsp;El dibujo esta disponible
+                                    </FormLabel>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
+
                         <div className="flex items-center gap-x-2">
                             <Button
                                 disabled={!isValid || isSubmitting}

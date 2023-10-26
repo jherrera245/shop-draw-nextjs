@@ -42,7 +42,7 @@ export const DescriptionForm = ({
         setIsEditing((current) => !current);
         if (!isEditing) {
             form.setValue("descripcion", initialData?.descripcion || "");
-                }
+        }
     };
 
     const router = useRouter();
@@ -68,10 +68,13 @@ export const DescriptionForm = ({
     }
 
     return (
-        <div className="mt-6 border bg-[#cfcfcf] dark:bg-[#1f1f1f] rounded-md p-4">
+        <div className="mt-6 border bg-[#cde0f9] dark:bg-[#334155] rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
                 Descripción del dibujo o pintura
-                <Button onClick={toggleEdit} variant="customghost">
+                <Button 
+                    className="text-white bg-[#3b82f6] hover:bg-blue-950 dark:hover:bg-slate-600 dark:hover:text-white" 
+                    onClick={toggleEdit} 
+                    variant="customghost">
                     {isEditing ? (
                         <>Cancelar</>
                     ) : (

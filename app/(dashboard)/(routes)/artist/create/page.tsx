@@ -43,8 +43,8 @@ const CreatePage = () => {
 
 
     return (
-        <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
-            <div className="bg-[#cfcfcf] dark:bg-[#1f1f1f] p-6">
+        <div className="max-w-5xl flex p-6">
+            <div className="bg-[#cde0f9] dark:bg-[#334155] p-6 rounded-md">
                 <h1 className="text-2xl">Nombra tu dibujo</h1>
                 <p className="text-sm text-slate-600 dark:text-gray-500">
                     ¿Como te gustaría nombrar tu dibujo? No te preocupes, puedes cambiar esto después.
@@ -65,7 +65,7 @@ const CreatePage = () => {
                                     <FormControl>
                                         <Input
                                             disabled={isSubmitting}
-                                            placeholder="ej. 'Desarrollo web con Next.js'"
+                                            placeholder="ej. 'Noche estrellada...'"
                                             {...field}
                                         />
                                     </FormControl>

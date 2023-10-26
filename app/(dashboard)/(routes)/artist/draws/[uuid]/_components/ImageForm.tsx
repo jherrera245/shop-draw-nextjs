@@ -44,10 +44,13 @@ export const ImageForm = ({
     }
 
     return (
-        <div className="mt-6 border bg-[#cfcfcf] dark:bg-[#1f1f1f] rounded-md p-4">
+        <div className="mt-6 border bg-[#cde0f9] dark:bg-[#334155] rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
                 Imagen del curso
-                <Button onClick={toggleEdit} variant="customghost">
+                <Button
+                    className="text-white bg-[#3b82f6] hover:bg-blue-950 dark:hover:bg-slate-600 dark:hover:text-white" 
+                    onClick={toggleEdit} 
+                    variant="customghost">
                     {isEditing && (
                         <>Cancelar</>
                     )}
@@ -84,7 +87,7 @@ export const ImageForm = ({
             {isEditing && (
                 <div>
                     <FileUpload
-                        endpoint="courseImage"
+                        endpoint="drawImage"
                         onChange={(url) => {
                             if (url) {
                                 onSubmit({ imagen_url: url });

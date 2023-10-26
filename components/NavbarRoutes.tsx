@@ -16,14 +16,14 @@ export const NavbarRoutes = () => {
         <div className="flex gap-x-8 ml-auto">
             {isArtisPage || isPlayerPage ? (
                 <Link href="/">
-                    <Button className="text-white bg-[#3b82f6]" size="sm" variant='customghost'>
+                    <Button className="text-white bg-[#3b82f6] hover:bg-blue-950 dark:hover:bg-slate-600 dark:hover:text-white" size="sm" variant='customghost'>
                         <LogOut className="h-4 w-4 mr-2" />
                         Salir
                     </Button>
                 </Link>
             ) : (
                 <Link href="/artist/draws">
-                    <Button className="text-white bg-[#3b82f6]" size="sm" variant='customghost'>
+                    <Button className="text-white bg-[#3b82f6] hover:bg-blue-950 dark:hover:bg-slate-600 dark:hover:text-white" size="sm" variant='customghost'>
                         Artista
                     </Button>
                 </Link>
