@@ -1,6 +1,6 @@
 "use client";
 import { Layout, BarChart, Palette, PenTool } from "lucide-react";
-import { SidebarItem } from "./SidebarItem";
+import { NavItem } from "./NavItem";
 import {usePathname} from "next/navigation";
 
 const guestRoutes = [
@@ -29,23 +29,23 @@ const artistRoutes = [
     }
 ];
 
-export const SidebarRoutes = () => {
+export const NavRoutes = () => {
 
     const pathname = usePathname();
     const isArtistPage = pathname?.includes("/artist");
     const routes = isArtistPage ? artistRoutes : guestRoutes;
     
     return (
-        <div className="flex flex-col w-full">
+        <>
             {routes.map((route) => (
-                <SidebarItem 
+                <NavItem 
                 key={route.href}
                 icon={route.icon}
                 label={route.label}
                 href={route.href}
             />
             ))}
-        </div>
+        </>
     )
 };
 

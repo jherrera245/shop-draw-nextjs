@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { SidebarRoutes } from "./SidebarRoutes";
+import { NavRoutes} from "./NavRoutes";
 
 const Sidebar = () => {
     return (
@@ -8,7 +8,7 @@ const Sidebar = () => {
                 <Logo />
             </div>
             <div className="flex flex-col w-full">
-                <SidebarRoutes />
+                <NavRoutes />
             </div>
         </div>
     );

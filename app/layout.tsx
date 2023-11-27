@@ -30,7 +30,7 @@ export default function RootLayout({
             enableSystem={true}
             storageKey='theme-lms'
           >
-            <ToasterProvider />
+          <ToasterProvider />
             {children}
           </ThemeProvider></body>
       </html>

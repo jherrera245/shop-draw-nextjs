@@ -1,37 +1,24 @@
 "use client";
 
-import { UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { MenuIcon } from "lucide-react";
+import { NavRoutes } from "@/app/(dashboard)/_components/NavRoutes";
 
 export const NavbarRoutes = () => {
-    const pathname = usePathname();
-    const isArtisPage = pathname?.startsWith("/artist");
-    const isPlayerPage = pathname?.includes("/chapter");
-
     return (
-        <div className="flex gap-x-8 ml-auto">
-            {isArtisPage || isPlayerPage ? (
-                <Link href="/">
-                    <Button className="text-white bg-[#3b82f6] hover:bg-blue-950 dark:hover:bg-slate-600 dark:hover:text-white" size="sm" variant='customghost'>
-                        <LogOut className="h-4 w-4 mr-2" />
-                        Salir
-                    </Button>
-                </Link>
-            ) : (
-                <Link href="/artist/draws">
-                    <Button className="text-white bg-[#3b82f6] hover:bg-blue-950 dark:hover:bg-slate-600 dark:hover:text-white" size="sm" variant='customghost'>
-                        Artista
-                    </Button>
-                </Link>
-            )}
-            <UserButton
-                afterSignOutUrl="/"
-            />
-            <ModeToggle />
-        </div>
+        <>
+            <div className="px-8 py-4 bg-[#fd3d57] md:flex items-center cursor-pointer relative group hidden">
+                <span className="text-white">
+                    <MenuIcon />
+                </span>
+            </div>
+
+            <div className="flex items-center justify-between flex-grow md:pl-12 py-5">
+                <div className="flex items-center space-x-6 capitalize">
+                   <NavRoutes />
+                </div>
+                <ModeToggle />
+            </div>
+        </>
     );
 }
