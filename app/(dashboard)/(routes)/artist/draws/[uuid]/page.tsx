@@ -1,11 +1,9 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { LayoutDashboard } from "lucide-react";
-import { TitleForm } from "./_components/TitleForm";
-import { DescriptionForm } from "./_components/DescriptionForm";
-import { AvailableForm } from "./_components/AvailableForm";
-import { ImageForm } from "./_components/ImageForm";
+import { InfoIcon } from "lucide-react";
+import { Banner } from "@/components/Banner";
+import { Actions } from "./_components/Actions";
 
 const CourseUuidPage = async ({
     params
@@ -47,46 +45,43 @@ const CourseUuidPage = async ({
 
     const completionText = `(${completedFields}/${totalFields})`;
 
+    const isComplete = requiredFields.every(Boolean);
+
     return (
         <div className="p-6">
-            <div className="flex items-center justify-between">
+
+            {!draw.disponible && (
+                <Banner
+                    label="Este dibujo o pintura no se encuentra disponible para la venta!"
+                />
+            )}
+
+            <div className={!draw.disponible ? "flex items-center justify-between mt-3" : "flex items-center justify-between"}>
                 <div className="flex flex-col gap-y-2">
-                    <h1 className="text-2xl font-medium">
-                        Configuración de la publicación del dibujo
-                    </h1>
                     <span className="text-sm text-slate-700 dark:text-white">
-                        Completar todos los campos {completionText}
+                        Campos completados {completionText}
                     </span>
                 </div>
+
+                <Actions
+                    disabled={isComplete}
+                    id_dibujo={draw.id_dibujo}
+                    isAvaliable={draw.disponible}
+                />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
                 <div className="flex items-center gap-x-2">
                     <div className="rounded-full flex items-center justify-center bg-sky-100 dark:bg-[#334155] p-2">
-                        <LayoutDashboard className="h-8 w-8 text-blue-400 dark:text-blue-700" />
+                        <InfoIcon className="h-8 w-8 text-blue-400 dark:text-blue-700" />
                     </div>
-                    <h2 className="text-xl">
-                        Personaliza tu publicación
-                    </h2>
+                    <h1 className="text-2xl font-medium">
+                        Titulo: {draw.titulo}
+                    </h1>
                 </div>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-2 gap-2">
-                <TitleForm
-                    initialData={draw}
-                    id_dibujo={draw.id_dibujo}
-                />
-                <AvailableForm
-                    initialData={draw}
-                    id_dibujo={draw.id_dibujo}
-                />
-                <DescriptionForm
-                    initialData={draw}
-                    id_dibujo={draw.id_dibujo}
-                />
-                <ImageForm
-                    initialData={draw}
-                    id_dibujo={draw.id_dibujo}
-                />
+
             </div>
         </div>
     );

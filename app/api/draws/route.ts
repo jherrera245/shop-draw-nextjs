@@ -8,7 +8,7 @@ export async function POST(
 ) {
     try {
         const { userId } = auth();
-        const { titulo } = await req.json();
+        const dataValues = await req.json();
 
         if (!userId) {
             return new NextResponse("No autorizado", { status: 401 });
@@ -17,9 +17,11 @@ export async function POST(
         const course = await db.tbl_dibujos.create({
             data: {
                 id_usuario: userId,
-                titulo,
+                ...dataValues
             }
         });
+
+        console.log(course);
 
         return NextResponse.json(course);
     } catch (error) {
