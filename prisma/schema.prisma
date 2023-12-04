@@ -22,7 +22,6 @@ model tbl_dibujos {
   precio Float?
   stock Int @default(1)
   disponible Boolean @default(false)
-  es_orginal Boolean @default(false)
 
   id_categoria Int?
   categoria tbl_categorias? @relation(fields: [id_categoria], references: [id_categoria])

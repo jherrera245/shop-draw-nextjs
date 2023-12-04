@@ -20,7 +20,7 @@ export async function PATCH(
                 id_usuario: userId,
             },
         });
-
+        
         if (!draw) {
             return new NextResponse("Not found", { status: 404 });
         }

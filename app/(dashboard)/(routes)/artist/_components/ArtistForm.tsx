@@ -72,11 +72,16 @@ export const ArtistForm = ({
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await axios.post("/api/draws", values);
-            router.push(`/artist/draws/${response.data.uuid}`);
-            toast.success("Publicación de dibujo creado correctamente!!!");
+            if(!isEdit) {
+                const response = await axios.post("/api/draws", values);
+                router.push(`/artist/draws/${response.data.uuid}`);
+                toast.success("Publicación de dibujo creado correctamente!!!");
+            }else {
+                const response = await axios.patch(`/api/draws/${id_dibujo}`, values);
+                toast.success("Dibujo actualizado exitosamente!!");
+                router.push(`/artist/draws/${response.data.uuid}`);
+            }
         } catch (error) {
-            //console.log("ha ocurrido un error");
             toast.error("Ha ocurrido un error");
         }
     }
@@ -193,7 +198,7 @@ export const ArtistForm = ({
                     />
 
                     < div className="flex items-center gap-x-2">
-                        <Link href="/">
+                        <Link href="/artist/draws">
                             <Button
                                 type="button"
                                 variant="destructive"

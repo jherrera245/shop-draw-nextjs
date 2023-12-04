@@ -50,8 +50,6 @@ const EditPage = async ({
         draw.imagen_url,
         draw.precio,
         draw.stock,
-        draw.disponible,
-        draw.es_orginal,
         draw.id_categoria,
         draw.id_tecnica,
     ];
