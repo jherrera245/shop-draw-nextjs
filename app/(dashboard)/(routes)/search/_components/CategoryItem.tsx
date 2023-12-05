@@ -40,14 +40,16 @@ export const CategoryItem = ({
         }, { skipNull: true, skipEmptyString: true });
 
         router.push(url);
+
+        console.log(url);
     };
 
     return (
         <button
             onClick={onClick}
             className={cn(
-                "py-2 px-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-sky-500 transition",
-                isSelected && "border-sky-600 bg-teal-600 text-white dark:bg-yellow-500 dark:text-black dark:border-red-900"
+                "py-2 px-3 text-sm border border-[#fd3d57] rounded-full flex items-center gap-x-1 transition",
+                isSelected && "border border-[#fd3d57] bg-[#fd3d57] text-white dark:bg-yellow-500 dark:text-black dark:border-red-900"
             )}
             type="button"
         >

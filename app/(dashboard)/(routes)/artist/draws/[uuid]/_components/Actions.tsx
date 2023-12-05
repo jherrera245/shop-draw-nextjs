@@ -72,7 +72,7 @@ export const Actions = ({
             <div className="mb-3">
                 <Button
                     onClick={onClick}
-                    disabled={isLoading}
+                    disabled={disabled}
                     className="focus:outline-none focus:ring-2 rounded-none  h-15 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700"
                 >
                     <CheckSquareIcon className="mr-2" />

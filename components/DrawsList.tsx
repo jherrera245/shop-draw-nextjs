@@ -6,20 +6,20 @@ type DrawWithCategory = tbl_dibujos & {
     categoria: tbl_categorias | null;
 };
 
-interface CoursesListProps {
+interface DrawsListProps {
     items: DrawWithCategory[];
 }
 
 export const DrawsList = ({
     items
-}: CoursesListProps) => {
+}: DrawsListProps) => {
     return (
         <div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {items.map((item) => (
                     <DrawCard
                         key={item.uuid}
-                        id={item.uuid}
+                        uuid={item.uuid}
                         title={item.titulo!}
                         imageUrl={item.imagen_url!}
                         price={item.precio!}

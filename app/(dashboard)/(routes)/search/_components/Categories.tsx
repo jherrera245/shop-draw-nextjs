@@ -3,7 +3,9 @@
 import { tbl_categorias } from "@prisma/client";
 import {
     FcPanorama,
-    FcCompactCamera,
+    FcAddImage,
+    FcCamera,
+    FcAutomatic,
 } from "react-icons/fc";
 import { IconType } from "react-icons";
 import { CategoryItem } from "./CategoryItem";
@@ -13,8 +15,10 @@ interface CategoriesProps {
 }
 
 const iconMap: Record<tbl_categorias["nombre"], IconType> = {
-    "Digital": FcPanorama,
-    "Pinturas": FcCompactCamera,
+    "Digital": FcAddImage,
+    "Pinturas": FcAutomatic,
+    "Paisajes": FcPanorama,
+    "Retratos": FcCamera
 };
 
 export const Categories = ({

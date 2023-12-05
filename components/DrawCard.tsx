@@ -3,7 +3,7 @@ import Link from "next/link";
 import { formatPrice } from "@/lib/format";
 
 interface DrawCardProps {
-    id: string;
+    uuid: string;
     title: string;
     imageUrl: string;
     price: number;
@@ -11,14 +11,14 @@ interface DrawCardProps {
 };
 
 export const DrawCard = ({
-    id,
+    uuid,
     title,
     imageUrl,
     price,
     category
 }: DrawCardProps) => {
     return (
-        <Link href={`/draws/${id}`}>
+        <Link href={`/draws/${uuid}`}>
             <div className="bg-white shadow rounded overflow-hidden group">
                 <div className="relative w-full aspect-video rounded-md overflow-hidden">
                     <Image

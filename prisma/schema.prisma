@@ -30,6 +30,7 @@ model tbl_dibujos {
   tecnica tbl_tecnicas? @relation(fields: [id_tecnica], references: [id_tecnica])
 
   adjuntos tbl_adjuntos[]
+  compras tbl_compras[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -64,4 +65,27 @@ model tbl_adjuntos {
   updatedAt DateTime @updatedAt
 
   @@index([id_dibujo])
+}
+
+model tbl_compras {
+  id_compra  String @id @default(uuid())
+  userId String
+
+  id_dibujo   Int
+  dibujo      tbl_dibujos @relation(fields: [id_dibujo], references: [id_dibujo], onDelete: Cascade)
+  dibujo_uuid String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt()
+
+  @@unique([userId, dibujo_uuid])
+  @@index([id_dibujo])
+}
+
+model tbl_stripe_clientes {
+  id               String @id @default(uuid())
+  userId           String @unique
+  stripeCustomerId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

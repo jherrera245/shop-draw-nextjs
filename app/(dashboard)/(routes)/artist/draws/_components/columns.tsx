@@ -23,7 +23,7 @@ export const columns: ColumnDef<tbl_dibujos>[] = [
         header: ({ column }) => {
             return (
                 <Button
-                    variant="customghost"
+                    className="bg-white text-dark hover:bg-[#fd3d57] hover:text-white"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
                     Titulo
@@ -37,7 +37,7 @@ export const columns: ColumnDef<tbl_dibujos>[] = [
         header: ({ column }) => {
             return (
                 <Button
-                    variant="customghost"
+                    className="bg-white text-dark hover:bg-[#fd3d57] hover:text-white"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
                     Categoria
@@ -51,7 +51,7 @@ export const columns: ColumnDef<tbl_dibujos>[] = [
         header: ({ column }) => {
             return (
                 <Button
-                    variant="customghost"
+                    className="bg-white text-dark hover:bg-[#fd3d57] hover:text-white"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
                     Precio
@@ -74,7 +74,7 @@ export const columns: ColumnDef<tbl_dibujos>[] = [
         header: ({ column }) => {
             return (
                 <Button
-                    variant="customghost"
+                    className="bg-white text-dark hover:bg-[#fd3d57] hover:text-white"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
                     Disponible
