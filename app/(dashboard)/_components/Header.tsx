@@ -38,7 +38,7 @@ export const Header = () => {
                 ) : (
                     <Link href="/artist/draws" className="text-center text-gray-700 hover:text-primary transition relative">
                        
-                       <PaintBucket className="text-2xl" />
+                    <PaintBucket className="text-2xl" />
                         
                         <div className="text-xs leading-3">Artista</div>
                     </Link>
