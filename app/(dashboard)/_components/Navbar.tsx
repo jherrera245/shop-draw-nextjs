@@ -4,7 +4,7 @@ import MobileSidebar from "./MobileSidebar";
 export const Navbar = () => { 
     return (
         <div className="container flex">
-            <MobileSidebar />
+            {/* <MobileSidebar /> */}
             <NavbarRoutes />
         </div>
     ); 
