@@ -7,7 +7,7 @@ const guestRoutes = [
     {
         icon: Layout,
         label: "Dashboard",
-        href: "/cliente",
+        href: "/client",
     },
     {
         icon: Palette,
