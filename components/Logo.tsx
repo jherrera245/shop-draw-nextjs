@@ -15,7 +15,7 @@ export const Logo = () => {
                     width={30}
                 />
                 <p className={cn(
-                    "text-lg text-neutral-70 pb-1 hover:text-[#fd3d57] text-white"
+                    "text-lg text-neutral-70 pb-1 hover:text-[#fd3d57] text-black dark:text-white"
                 )}>
                     Shop Draw
                 </p>

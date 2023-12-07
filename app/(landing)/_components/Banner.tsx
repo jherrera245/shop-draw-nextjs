@@ -1,5 +1,3 @@
-import { TypeAnimation } from "react-type-animation";
-import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -10,7 +8,7 @@ export const Banner = () => {
     return (
         <div className="bg-cover bg-no-repeat bg-center py-36" style={{ backgroundImage: "url('banner.png')" }}>
             <div className="container">
-                <h1 className="text-6xl text-gray-800 font-medium mb-4 capitalize">
+                <h1 className="text-6xl dark:text-white-800 font-medium mb-4 capitalize">
                     La mejor colección <br /> de arte.
                 </h1>
                 <p>

@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export const Navbar = () => {
     const { userId } = auth();
     return (
-        <nav className="bg-gray-800">
+        <nav className="bg-white dark:bg-gray-800">
             <div className="container flex">
                 <div className="md:max-w-screen-2xl mx-auto flex items-center w-full justify-between pt-5 pb-5">
                     <Logo />
@@ -18,7 +18,7 @@ export const Navbar = () => {
                                 <Button
                                     size="sm"
                                     className={cn(
-                                        "text-white hover:text-[#fd3d57] transition"
+                                        "text-white dark:text-black transition"
                                     )}
                                     asChild>
                                     <Link href="/sign-in">
@@ -28,7 +28,7 @@ export const Navbar = () => {
                                 <Button
                                     size="sm"
                                     className={cn(
-                                        "text-white hover:text-[#fd3d57] transition"
+                                        "text-white dark:text-black transition"
                                     )}
                                     asChild>
                                     <Link href="/sign-up">
@@ -40,7 +40,7 @@ export const Navbar = () => {
                         
                         {userId && (
                             <Button size="sm"
-                                className={cn("text-white hover:text-[#fd3d57] transition")}
+                                className={cn("text-white dark:text-black transition")}
                                 asChild>
                                 <Link href="/client">
                                     Dashboard
