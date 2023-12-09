@@ -61,7 +61,10 @@ export const AttachmentsForm = ({
         <div className="border bg-white shadow rounded-md p-4 mt-3">
             <div className="font-medium flex items-center justify-between">
                 Adjuntos del dibujo
-                <Button onClick={toggleEdit} variant="customghost">
+                <Button 
+                    className="text-white bg-[#fd3d57] hover:bg-black dark:hover:bg-slate-600 dark:hover:text-white" 
+                    onClick={toggleEdit} 
+                    variant="customghost">
                     {isEditing && (
                         <>Cancelar</>
                     )}

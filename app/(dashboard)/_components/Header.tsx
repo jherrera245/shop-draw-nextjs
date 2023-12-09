@@ -29,7 +29,7 @@ export const Header = () => {
             <div className="flex items-center space-x-4">
                 
                 {isArtisPage || isPlayerPage ? (
-                    <Link href="/" className="text-center text-gray-700 hover:text-primary transition relative">
+                    <Link href="/client" className="text-center text-gray-700 hover:text-primary transition relative">
 
                         <LogOut className="text-2xl" />
                         

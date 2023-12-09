@@ -21,10 +21,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { tbl_categorias, tbl_dibujos, tbl_tecnicas } from "@prisma/client";
 import Link from "next/link";
 import { Combobox } from "@/components/ui/combobox";
-import { useState } from "react";
-import { ImageIcon } from "lucide-react";
-import Image from "next/image";
-import { FileUpload } from "@/components/FileUpload";
 
 interface ArtistFormProps {
     initialData?: tbl_dibujos & { categoria: tbl_categorias | null, tecnica: tbl_tecnicas | null };
@@ -148,7 +144,7 @@ export const ArtistForm = ({
                                     </FormLabel>
                                     <FormControl>
                                         <Combobox
-                                            options={...optionsTechniques}
+                                            options={optionsTechniques}
                                             {...field}
                                         />
                                     </FormControl>
@@ -167,7 +163,7 @@ export const ArtistForm = ({
                                     </FormLabel>
                                     <FormControl>
                                         <Combobox
-                                            options={...optionsCategories}
+                                            options={optionsCategories}
                                             {...field}
                                         />
                                     </FormControl>
