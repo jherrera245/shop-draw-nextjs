@@ -2,6 +2,7 @@
 
 import { tbl_categorias, tbl_dibujos } from "@prisma/client";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface CategoriesProductChartProps {
@@ -11,30 +12,30 @@ interface CategoriesProductChartProps {
 
 export function CategoriesProductChart({ products, categories }: CategoriesProductChartProps) {
 
-    let x = {}
+    const [data, setData] = useState([{ category: "", total: 0 }])
+    useEffect(() => {
+        const dataRender = categories.map((category) => {
 
-    const data = categories.map((category) => {
+            const result = {
+                category: category.nombre,
+                total: 0
+            };
 
-        const result = {
-            category: category.nombre,
-            total: 0
-        };
+            products.map((product) => {
+                if (category.id_categoria === product.id_categoria) {
+                    result.total += 1;
+                }
+            })
 
-        products.map((product) => {
-            if (category.id_categoria === product.id_categoria) {
-                result.total += 1;
-            }
+            return result;
         })
 
-        return result;
-    })
-
-    console.log(data);
-
+        setData(dataRender);
+    }, [])
 
     const option = {
         chart: {
-            id: 'apexchart-example'
+            id: 'apexchart-categorias-productos'
         },
         xaxis: {
             categories: data.map((item) => {
@@ -44,7 +45,7 @@ export function CategoriesProductChart({ products, categories }: CategoriesProdu
     }
 
     const series = [{
-        name: 'series-1',
+        name: 'Total',
         data: data.map((item) => {
             return item.total;
         })
@@ -64,7 +65,7 @@ export function CategoriesProductChart({ products, categories }: CategoriesProdu
                     </div>
 
                     <div className="p-4 flex-auto">
-                        <div className="relative h-350-px">          
+                        <div className="relative h-350-px">
                             <ApexChart type="bar" options={option} series={series} />
                         </div>
                     </div>

@@ -27,9 +27,6 @@ const ClientPage = async () => {
         }
     });
 
-    console.log(shopping);
-    
-
     return (
         <div className="mx-auto shadow px-6 py-7 rounded overflow-hidden">
             <div className="flex items-center space-x-3 capitalize">

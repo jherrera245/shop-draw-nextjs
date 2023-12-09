@@ -2,6 +2,7 @@
 
 import { tbl_compras, tbl_dibujos } from "@prisma/client";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface SalesProductChartProps {
@@ -11,28 +12,32 @@ interface SalesProductChartProps {
 
 export function SalesProductChart({ products, shoppings }: SalesProductChartProps) {
 
-    const data = products.map((product) => {
 
-        const result = {
-            product: product.titulo,
-            total: 0
-        };
+    const [data, setData] = useState([{product:"", total:0}]);
 
-        shoppings.map((shopping) => {
-            if (product.id_dibujo === shopping.id_dibujo) {
-                result.total += 1;
-            }
+    useEffect(() => {
+        const renderData = products.map((product) => {
+
+            const result = {
+                product: product.titulo,
+                total: 0
+            };
+    
+            shoppings.map((shopping) => {
+                if (product.id_dibujo === shopping.id_dibujo) {
+                    result.total += 1;
+                }
+            })
+    
+            return result;
         })
 
-        return result;
-    })
-
-    console.log(data);
-
+        setData(renderData)
+    }, [])
 
     const option = {
         chart: {
-            id: 'apexchart-example'
+            id: 'apexchart-sales-products'
         },
         xaxis: {
             categories: data.map((item) => {
@@ -42,7 +47,7 @@ export function SalesProductChart({ products, shoppings }: SalesProductChartProp
     }
 
     const series = [{
-        name: 'series-1',
+        name: 'Unidades',
         data: data.map((item) => {
             return item.total;
         })
