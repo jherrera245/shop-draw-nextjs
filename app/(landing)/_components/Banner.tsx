@@ -8,10 +8,10 @@ export const Banner = () => {
     return (
         <div className="bg-cover bg-no-repeat bg-center py-36" style={{ backgroundImage: "url('banner.png')" }}>
             <div className="container">
-                <h1 className="text-6xl dark:text-white-800 font-medium mb-4 capitalize">
+                <h1 className="text-6xl text-white dark:text-white-800 font-medium mb-4 capitalize">
                     La mejor colección <br /> de arte.
                 </h1>
-                <p>
+                <p className="text-white">
                     Explora una amplia variedad de obras de artistas talentosos.<br />
                     Encuentra la pieza perfecta para tu colección o regalo especial.
                 </p>
